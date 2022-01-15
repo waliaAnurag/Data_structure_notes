@@ -1,0 +1,52 @@
+// { Driver Code Starts
+//Initial Template for C
+
+#include <stdio.h>
+
+
+ // } Driver Code Ends
+//User function Template for C
+int sumOfDigits(int n)
+{
+    //Your code here
+    if(n==0){
+        return 0;
+    }
+    else{
+       
+        return ((n%10) + sumOfDigits(n/10));   
+/*
+======================================================How do i reach this solution============================================================================
+I noticed that calling a function sumOfDigits(n/10)will divide my number into smalller and smaller number and n%10 will give me last digit of each divied number
+so i thought to divide a number nd call the fucntion and then add the ast digit of each divided number which eliminated the need of variables like:res=n%10;
+sum+=res
+and then calling sumOfDigits(n/10)
+
+================================================================================================================================================================
+
+*/
+    }
+}
+
+// { Driver Code Starts.
+
+int main() {
+	int T;
+	
+	//taking testcases
+	scanf("%d", &T);
+	while(T--)
+	{
+	    int n;
+	    
+	    //taking input n
+	    scanf("%d", &n);
+	    
+	    //calling method sumOfDigits()
+	    
+	    printf("%d\n", sumOfDigits(n));
+	    
+	    
+	}
+	return 0;
+}  // } Driver Code Ends
