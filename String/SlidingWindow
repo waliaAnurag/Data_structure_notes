@@ -1,0 +1,81 @@
+Question , Level:Medium
+Longest Substring Without Repeating Characters
+
+Example 1:
+
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+Example 2:
+
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+Example 3:
+
+Input: s = "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3.
+Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+ 
+
+Constraints:
+
+0 <= s.length <= 5 * 104
+s consists of English letters, digits, symbols and spaces.
+
+Solution:
+
+So we will generate for each subString and check if its valida and keep updating maxLen accordingly
+
+You’d want to consider using the sliding window pattern in situations like these:
+
+1. Subarray or Substring Problems: Imagine you need to find the longest or shortest subarray or substring that meets certain criteria (like having the maximum sum or distinct elements). Well, that’s the sliding window’s sweet spot.
+
+2. Fixed-Size Data Extraction: Sometimes, you need to process data within a fixed-size window or subarray. Think of it as extracting insights from a particular chunk of data. This pattern makes it a breeze.
+
+3. Two-Pointer Approach: In some cases, you can think of the sliding window as a two-pointer approach, where two pointers (usually the left and right) roam through your data while maintaining a specific window size.
+
+
+How Do You Actually Use It?
+So, you’re sold on trying out the sliding window pattern? Awesome! Here’s a quick guide on how to implement it:
+
+Step 1: Define Your Window: First things first, you define the window size or boundaries. Most of the time, you’ll have two pointers, one marking the start and the other the end of the window. Set them up accordingly.
+
+Step 2: Slide the Window: Now comes the fun part! Start moving your window by incrementing the end pointer. While you do this, keep track of any relevant data within that window.
+
+Step 3: Check the Constraints: At each step, give a look-see to check if the current window satisfies your problem’s constraints or requirements. If it does, update your result or do whatever needs to be done.
+
+Step 4: Adjust the Window: If the window no longer meets the constraints, don’t fret. Simply adjust it by incrementing the start pointer while ensuring the window’s size stays constant.
+
+Step 5: Rinse and Repeat: Keep sliding and adjusting that window until you’ve worked through the entire array or list. Eventually, you’ll get the result you’re aiming for.
+
+Are there any types?
+Yes, the sliding window pattern can be categorized into two main types: fixed-size windows and dynamic-size windows.
+
+
+Link to the image showing all cases where sliding window algorithm pattern:
+https://miro.medium.com/v2/resize:fit:1400/format:webp/1*7i6LJXgZad5x7ezFyNuO5Q.png
+
+
+Now my solution to the problem:
+
+var lengthOfLongestSubstring = function(s) {
+    let subString=[]
+    let longestLength = 0
+    let left=0;
+    let right=0;
+    while(right<s.length && right>=left){
+        if(!subString.includes(s[right])){
+            subString.push(s[right])
+            right++
+        }else{
+            left++
+            subString.shift();
+        }
+        if(subString.length > longestLength){
+            longestLength = subString.length
+        }
+    }
+    return longestLength
+};
